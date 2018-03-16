@@ -27,6 +27,6 @@ public class StudentController {
     public Object lists() {
 
 
-        return this.restTemplate.getForObject("http://10.0.0.11:9999/student/lists", Object.class);
+        return this.restTemplate.getForObject("http://localhost:9091    /student/lists", Object.class);
     }
 }
