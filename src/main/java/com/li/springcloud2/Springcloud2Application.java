@@ -10,6 +10,7 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.ribbon.RibbonClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
@@ -21,6 +22,7 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication(excludeName = "com.li.springcloud2.config")
 @RibbonClient(name = "student-server", configuration = TestConfiguration.class)
 @ComponentScan(excludeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION,value = ExcludeFromComponentScan.class) })
+@EnableFeignClients
 public class Springcloud2Application {
 
     @Autowired

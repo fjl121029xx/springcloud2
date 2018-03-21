@@ -4,4 +4,15 @@ eureka:
       defaultZone: http://localhost:9093/eureka/
   instance:
     prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
 
+spring:
+  application:
+    name: springcloud2
+
+ribbon:
+  eureka:
+   enabled: false
+student-server:
+  ribbon:
+    listOfServers: localhost:9091
