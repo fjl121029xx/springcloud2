@@ -35,6 +35,11 @@ public class Springcloud2Application {
         return builder.build();
     }
 
+    /**
+     * Feign的覆写默认配置和Feign的日志
+     * http://blog.csdn.net/jeson0725/article/details/70226461
+     * @param args
+     */
     public static void main(String[] args) {
 
         SpringApplication.run(Springcloud2Application.class, args);

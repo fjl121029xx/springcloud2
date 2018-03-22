@@ -5,6 +5,7 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${spring.application.instance_id:${server.port}}
+    lease-renewal-interval-in-seconds: 30
 
 spring:
   application:
@@ -19,4 +20,8 @@ student-server:
 logging:
   level:
     com.li.springcloud2.feign.FeignClient2 : debug
+
+#解决第一次请求timeout的问题
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds : 5000
+
 
