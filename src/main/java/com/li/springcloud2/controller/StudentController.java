@@ -1,5 +1,6 @@
 package com.li.springcloud2.controller;
 
+import com.li.springcloud2.feign.FeignClient2;
 import com.li.springcloud2.feign.StoreClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -9,6 +10,7 @@ import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
@@ -22,6 +24,9 @@ public class StudentController {
 
     @Autowired
     private StoreClient storeClient;
+
+    @Autowired
+    private FeignClient2 feignClient2;
 
     @GetMapping("/student/lists2")
     @ResponseBody
@@ -45,5 +50,13 @@ public class StudentController {
         ServiceInstance choose = this.loadBalancerClient.choose("student-server");
         System.out.println(choose.getHost() + ":" + choose.getPort() + ":" + choose.getServiceId());
         return "student-server  ";
+    }
+
+    @GetMapping("/{servicename}")
+    @ResponseBody
+    public String findEurekaInfoByName(@PathVariable String servicename) {
+
+        System.out.println(servicename);
+        return this.feignClient2.findEurekaInfoByServiceName(servicename);
     }
 }

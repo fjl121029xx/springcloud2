@@ -16,3 +16,7 @@ ribbon:
 student-server:
   ribbon:
     listOfServers: localhost:9091
+logging:
+  level:
+    com.li.springcloud2.feign.FeignClient2 : debug
+
